@@ -106,32 +106,51 @@ class Exemple2 extends AnimatedCanvas {
 
 
 canvasManager = new CanvasManager("#modui");
-var grille = canvasManager.genererGrille(6, 5);
+var grille = canvasManager.genererGrille(12, 9);
 grille.forEach(x => {
     x.forEach(y => {
         var can = document.querySelector('#' + y);
-        var val = 55 + Math.random() * 200;
+        var val = Math.floor(55 + Math.random() * 200);
         var color = 'rgb(' +
             val +
             ', ' +
-            val + //Math.random() * 255 +
+            val +
             ', ' +
-            val + //Math.random() * 255 +
+            val +
             ')';
-        var epaisseur = 1 + (Math.random() * 5);
+        var epaisseur = Math.round(1 + (Math.random() * 5));
         var vitesse = 0.2 + (Math.random() * 5);
 
-        /*
-                var typesUI = [
-                    'Fenetre',
-                ];
-        
-                var uiType = typesUI[Math.round(Math.random() * typesUI.length)];
-        */
+        var espacement = 20;
 
-        //var ui = eval('new ' + uiType + '(can, vitesse, color, null, null, epaisseur);');
-        var ui = new Fenetre(can, vitesse, color, null, null, epaisseur);
-        //fenetre.startAnimating();
+        var typesUI = [
+            {
+                'type': 'Fenetre',
+                'params': [
+                    'can',
+                    'vitesse',
+                    'color',
+                    'null',
+                    'null',
+                    'epaisseur'
+                ]
+            },
+            {
+                'type': 'Grille',
+                'params': [
+                    'can',
+                    'color',
+                    'espacement'
+                ]
+            }
+        ];
+
+        var numUIAleatoire = Math.floor(Math.random() * typesUI.length);
+        var uiType = typesUI[numUIAleatoire];
+
+        var params = uiType.params.join(',');
+        var ui = eval('new ' + uiType.type + '(' + params + ');');
+
         animationAleatoire(ui);
     });
 });
@@ -142,3 +161,4 @@ function animationAleatoire(ui) {
         ui.startAnimating();
     }, tps);
 }
+
