@@ -24,15 +24,18 @@ class Grille extends AnimatedCanvas {
 
         var diff = this.now - this.depart;
 
-        if (diff >= 0 && diff < 50) {
+        var step1 = 50;
+        var step2 = step1 + 30;
+
+        if (diff >= 0 && diff < step1) {
             this.on = true;
         }
 
-        if (diff >= 50 && diff < 100) {
+        if (diff >= step1 && diff < step2) {
             this.on = false;
         }
 
-        if (diff >= 100) {
+        if (diff >= step2) {
             this.on = true;
             this.stopApres = true;
         }
@@ -45,13 +48,12 @@ class Grille extends AnimatedCanvas {
             return;
         }
 
+
+
         this.ctx.beginPath();
-        /*
-                this.ctx.shadowBlur = 20;
-                this.ctx.shadowOffsetX = 0;
-                this.ctx.shadowOffsetY = 0;
-                this.ctx.shadowColor = this.couleur;
-        */
+
+
+
 
         this.ctx.strokeStyle = this.couleur;
 

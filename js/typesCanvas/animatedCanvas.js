@@ -19,6 +19,7 @@ class AnimatedCanvas {
         this.animationId = null;
         this.numeroAnimation = 0;
         this.stopAnimation = false;
+        this.couleur = 'white';
     }
 
     /**
@@ -42,6 +43,16 @@ class AnimatedCanvas {
      */
     dessiner() {
 
+    }
+
+    activerOmbre(actif = true) {
+        if (!actif) {
+            return;
+        }
+        this.ctx.shadowBlur = 20;
+        this.ctx.shadowOffsetX = 0;
+        this.ctx.shadowOffsetY = 0;
+        this.ctx.shadowColor = this.couleur;
     }
 
     /**

@@ -128,6 +128,7 @@ grille.forEach(x => {
         var espacement = Math.round(10 + (Math.random() * 40));
 
         var typesUI = [
+
             {
                 'type': 'Fenetre',
                 'params': [
@@ -139,6 +140,7 @@ grille.forEach(x => {
                     'epaisseur'
                 ]
             },
+
             {
                 'type': 'Grille',
                 'params': [
@@ -154,6 +156,9 @@ grille.forEach(x => {
 
         var params = uiType.params.join(',');
         var ui = eval('new ' + uiType.type + '(' + params + ');');
+
+        var ombrageOuiNon = Math.floor(Math.random() * 2);
+        ui.activerOmbre(ombrageOuiNon > 0);
 
         animationAleatoire(ui);
     });
