@@ -9,12 +9,9 @@ class Grille extends AnimatedCanvas {
         this.largeurFinale = this.width;
         this.hauteurFinale = this.height;
 
-
-
-
-
         this.on = true;
 
+        this.stopApres = false;
     }
 
     avancer() {
@@ -35,12 +32,9 @@ class Grille extends AnimatedCanvas {
             this.on = false;
         }
 
-        if (diff >= 100 && diff < 1010) {
+        if (diff >= 100) {
             this.on = true;
-        }
-
-        if (diff >= 1010) {
-            this.stopAnimation = true;
+            this.stopApres = true;
         }
 
     }
@@ -76,8 +70,8 @@ class Grille extends AnimatedCanvas {
 
         this.ctx.stroke();
 
-
-
-
+        if (this.stopApres) {
+            this.stopAnimation = true;
+        }
     }
 }
