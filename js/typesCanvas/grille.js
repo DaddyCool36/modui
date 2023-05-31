@@ -12,19 +12,44 @@ class Grille extends AnimatedCanvas {
 
 
 
-        this.chemin = [];
 
-
+        this.on = true;
 
     }
 
     avancer() {
 
+        if (this.depart == null) {
+            this.depart = Date.now();
+        }
 
+        this.now = Date.now();
+
+        var diff = this.now - this.depart;
+
+        if (diff >= 0 && diff < 50) {
+            this.on = true;
+        }
+
+        if (diff >= 50 && diff < 100) {
+            this.on = false;
+        }
+
+        if (diff >= 100 && diff < 1010) {
+            this.on = true;
+        }
+
+        if (diff >= 1010) {
+            this.stopAnimation = true;
+        }
 
     }
 
     dessiner() {
+
+        if (!this.on) {
+            return;
+        }
 
         this.ctx.beginPath();
         /*
@@ -51,7 +76,7 @@ class Grille extends AnimatedCanvas {
 
         this.ctx.stroke();
 
-        this.stopAnimation = true;
+
 
 
     }
