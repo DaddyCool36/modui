@@ -107,21 +107,25 @@ class Exemple2 extends AnimatedCanvas {
 
 canvasManager = new CanvasManager("#modui");
 var grille = canvasManager.genererGrille(12, 9);
+
+var valH = Math.floor(Math.random() * 360);
+
 grille.forEach(x => {
     x.forEach(y => {
         var can = document.querySelector('#' + y);
-        var val = Math.floor(55 + Math.random() * 200);
-        var color = 'rgb(' +
-            val +
-            ', ' +
-            val +
-            ', ' +
-            val +
-            ')';
+        var valS = Math.floor(40 + Math.random() * 60);
+        var valL = Math.floor(30 + Math.random() * 70);
+        var color = 'hsl(' +
+            valH +
+            'deg, ' +
+            valS +
+            '%, ' +
+            valL +
+            '%)';
         var epaisseur = Math.round(1 + (Math.random() * 5));
         var vitesse = 0.2 + (Math.random() * 5);
 
-        var espacement = 20;
+        var espacement = Math.round(10 + (Math.random() * 40));
 
         var typesUI = [
             {
