@@ -1,11 +1,16 @@
 class Bouton1 extends AnimatedCanvas {
 
-    constructor(canvas, couleur = 'white', couleurBouton = 'white') {
+    constructor(canvas, couleur = 'white', couleurBouton = 'white', numero = null) {
         super(canvas);
 
         this.couleur = couleur;
 
         this.couleurBouton = couleurBouton;
+
+        this.numero = numero;
+        if (numero == null) {
+            this.numero = Math.floor(1 + Math.random() * 99);
+        }
     }
 
     avancer() {
@@ -40,6 +45,8 @@ class Bouton1 extends AnimatedCanvas {
         this.ctx.fillRect(xDebut + this.epaisseur, this.height - (this.epaisseur * 2), this.width * (this.longueurLED / 100), this.epaisseur * 3);
 
         this.stopAnimation = true;
+
+        console.log(this.numero);
 
     }
 }
