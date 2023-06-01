@@ -148,6 +148,14 @@ grille.forEach(x => {
                     'color',
                     'espacement'
                 ]
+            },
+
+            {
+                'type': 'Bouton1',
+                'params': [
+                    'can',
+                    'color'
+                ]
             }
         ];
 
