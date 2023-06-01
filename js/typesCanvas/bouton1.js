@@ -8,14 +8,18 @@ class Bouton1 extends AnimatedCanvas {
         this.couleurBouton = couleurBouton;
 
         this.numero = numero;
-        if (numero == null) {
-            this.numero = Math.floor(1 + Math.random() * 99);
-        }
+
     }
 
     avancer() {
 
+        if (this.numero == null) {
+            this.numero = Math.floor(1 + Math.random() * 99);
+        }
 
+        if (this.numero >= 0 && this.numero <= 9) {
+            this.numero = "0" + this.numero;
+        }
 
     }
 
@@ -44,9 +48,10 @@ class Bouton1 extends AnimatedCanvas {
 
         this.ctx.fillRect(xDebut + this.epaisseur, this.height - (this.epaisseur * 2), this.width * (this.longueurLED / 100), this.epaisseur * 3);
 
-        this.stopAnimation = true;
+        this.ctx.font = "36pt sans-serif";
+        this.ctx.fillText(this.numero, this.width / 2, this.height / 2);
 
-        console.log(this.numero);
+        this.stopAnimation = true;
 
     }
 }
