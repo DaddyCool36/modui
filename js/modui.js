@@ -106,7 +106,7 @@ class Exemple2 extends AnimatedCanvas {
 
 
 canvasManager = new CanvasManager("#modui");
-var grille = canvasManager.genererGrille(12, 9);
+var grille = canvasManager.genererGrille(12, 10);
 
 var valH = Math.floor(Math.random() * 360);
 
@@ -123,7 +123,7 @@ grille.forEach(x => {
             valL +
             '%)';
         var epaisseur = Math.round(1 + (Math.random() * 5));
-        var vitesse = 0.2 + (Math.random() * 5);
+        var vitesse = 1 + (Math.random() * 4);
 
         var espacement = Math.round(10 + (Math.random() * 40));
 
