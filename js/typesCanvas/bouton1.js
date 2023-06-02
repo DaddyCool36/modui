@@ -14,12 +14,10 @@ class Bouton1 extends AnimatedCanvas {
     avancer() {
 
         if (this.numero == null) {
-            this.numero = Math.floor(1 + Math.random() * 99);
+            this.numero = Faker.fakeNombre(2);
         }
 
-        if (this.numero >= 0 && this.numero <= 9) {
-            this.numero = "0" + this.numero;
-        }
+        this.texte = Faker.fakeMot(3, 2);
 
     }
 
@@ -48,10 +46,18 @@ class Bouton1 extends AnimatedCanvas {
 
         this.ctx.fillRect(xDebut + this.epaisseur, this.height - (this.epaisseur * 2), this.width * (this.longueurLED / 100), this.epaisseur * 3);
 
-        var tailleTexte = this.height * 0.5;
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
 
+        var tailleNombre = this.height * 0.5;
+        this.ctx.font = "bold " + tailleNombre + "px sans-serif";
+        this.ctx.fillText(this.numero, (this.width / 2), (this.height / 2));
+
+        var tailleTexte = tailleNombre * 0.3;
         this.ctx.font = "bold " + tailleTexte + "px sans-serif";
-        this.ctx.fillText(this.numero, (this.width / 2) - (tailleTexte / 1.8), (this.height / 2) + (tailleTexte / 3));
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText(this.texte, (this.width / 2), (this.height / 5.5));
+
 
         this.stopAnimation = true;
 
