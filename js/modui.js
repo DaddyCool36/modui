@@ -106,7 +106,7 @@ class Exemple2 extends AnimatedCanvas {
 
 
 canvasManager = new CanvasManager("#modui");
-var grille = canvasManager.genererGrille(12, 10);
+var grille = canvasManager.genererGrille(6, 5);
 
 var valH = Math.floor(Math.random() * 360);
 
