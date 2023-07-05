@@ -51,12 +51,12 @@ class Bouton1 extends AnimatedCanvas {
 
         var tailleNombre = this.height * 0.5;
         this.ctx.font = "bold " + tailleNombre + "px sans-serif";
-        this.ctx.fillText(this.numero, (this.width / 2), (this.height / 2));
+        this.ctx.fillText(this.numero, (this.width / 2), (this.height / 1.7));
 
         var tailleTexte = tailleNombre * 0.3;
         this.ctx.font = "bold " + tailleTexte + "px sans-serif";
         this.ctx.textAlign = 'center';
-        this.ctx.fillText(this.texte, (this.width / 2), (this.height / 5.5));
+        this.ctx.fillText(this.texte, (this.width / 2), (this.height / 4.0));
 
 
         this.stopAnimation = true;

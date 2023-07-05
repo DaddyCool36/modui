@@ -3,10 +3,75 @@
  */
 class Faker {
 
+    static tabBoutons(i = null) {
+        var tab = [
+            'Drive',
+            'Engine',
+            'Launch',
+            'Online',
+            'Nav',
+            'Null',
+            'Shield',
+            'System',
+            'Thruster',
+        ];
+
+        if (i == null) {
+            return tab;
+        }
+
+        return tab[i];
+    }
+
+    static tabJauges(i = null) {
+        var tab = [
+            'Antenna',
+            'Band',
+            'Engine',
+            'Field',
+            'Frequency',
+            'Level',
+            'Line',
+            'Gain',
+            'Power',
+            'Sensor',
+            'Stage',
+            'Strength',
+            'Temp',
+            'Temperature',
+        ];
+
+        if (i == null) {
+            return tab;
+        }
+
+        return tab[i];
+    }
+
+    static tabLocalisations(i = null) {
+        var tab = [
+            'Back',
+            'Down',
+            'Front',
+            'Left',
+            'Main',
+            'Over',
+            'Rear',
+            'Right',
+            'Up',
+        ];
+
+        if (i == null) {
+            return tab;
+        }
+
+        return tab[i];
+    }
+
     /**
      * Génère un nombre aléatoire composé de nbChiffres chiffres.
      * @param {int} nbChiffres Nombre de chiffres que doit contenir le nombre. Défaut = 1.
-     * @returns {string} Un nombre composé de nbChiffres chiffres.
+     * @returns {string} Un chaine de caracteres composée de nbChiffres chiffres.
      */
     static fakeNombre(nbChiffres = 1) {
         var nombres = "";
@@ -41,5 +106,14 @@ class Faker {
         }
 
         return mot;
+    }
+
+    static fakeLabel(type = 'bouton', langue = 'EN') {
+        var nbLabelsBouton = Faker.tabBoutons().length;
+        var nbLabelsJauges = Faker.tabJauges().length;
+        var nbLabelsLocalisations = Faker.tabLocalisations().length;
+
+        var bouton = Faker.tabBoutons(Math.floor(Math.random() * nbLabelsBouton));
+        console.log(bouton);
     }
 }
