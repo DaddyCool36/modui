@@ -8,7 +8,7 @@ var grille = canvasManager.genererGrille(12, 10);
 
 var valH = Math.floor(Math.random() * 360);
 
-Faker.fakeLabel();
+Faker.fakeBouton();
 
 grille.forEach(x => {
     x.forEach(y => {

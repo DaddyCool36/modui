@@ -48,7 +48,7 @@ class Faker {
         return tab[i];
     }
 
-    static tabLocalisations(i = null) {
+    static tabPositions(i = null) {
         var tab = [
             'Back',
             'Down',
@@ -108,12 +108,22 @@ class Faker {
         return mot;
     }
 
-    static fakeLabel(type = 'bouton', langue = 'EN') {
+    static fakeBouton(type = 'bouton', langue = 'EN') {
         var nbLabelsBouton = Faker.tabBoutons().length;
-        var nbLabelsJauges = Faker.tabJauges().length;
-        var nbLabelsLocalisations = Faker.tabLocalisations().length;
-
         var bouton = Faker.tabBoutons(Math.floor(Math.random() * nbLabelsBouton));
-        console.log(bouton);
+
+
+        var probaPosition = (Math.floor(Math.random() * 5) == 0 ? true : false);
+        if (probaPosition) {
+            var nbLabelsPositions = Faker.tabPositions().length;
+            bouton = Faker.tabPositions(Math.floor(Math.random() * nbLabelsPositions)) + ' ' + bouton;
+        }
+
+        var probaLettre = (Math.floor(Math.random() * 5) == 0 ? true : false);
+        if (probaLettre) {
+            bouton += ' ' + Faker.fakeMot(1, 1);
+        }
+
+        return bouton;
     }
 }
