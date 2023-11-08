@@ -4,7 +4,7 @@
 */
 
 canvasManager = new CanvasManager("#modui");
-var grille = canvasManager.genererGrille(12, 10);
+var grille = canvasManager.genererGrille(5, 4);
 
 var valH = Math.floor(Math.random() * 360);
 

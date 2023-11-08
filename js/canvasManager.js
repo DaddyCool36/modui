@@ -14,14 +14,17 @@ class CanvasManager {
         this.largeur = this.conteneur.clientWidth;
         this.hauteur = this.conteneur.clientHeight;
 
+        var largeurCanvas = this.largeur / this.nombreEnX;
+        var hauteurCanvas = this.hauteur / this.nombreEnY;
+
         this.grille = [];
         for (var i = 0; i < nombreEnX; i++) {
             this.grille[i] = [];
             for (var j = 0; j < nombreEnY; j++) {
 
                 var leCanvas = document.createElement('canvas');
-                leCanvas.width = this.largeur / this.nombreEnX;
-                leCanvas.height = this.hauteur / this.nombreEnY;
+                leCanvas.width = largeurCanvas;
+                leCanvas.height = hauteurCanvas;
                 leCanvas.style.display = 'block';
                 leCanvas.style.position = 'absolute';
                 leCanvas.id = 'canX' + i + 'Y' + j;
