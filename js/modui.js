@@ -10,8 +10,7 @@ var valH = Math.floor(Math.random() * 360);
 
 Faker.fakeBouton();
 
-grille.forEach(x => {
-    x.forEach(y => {
+grille.forEach(y => {
         var can = document.querySelector('#' + y);
         var valS = Math.floor(40 + Math.random() * 60);
         var valL = Math.floor(30 + Math.random() * 70);
@@ -69,7 +68,7 @@ grille.forEach(x => {
         ui.activerOmbre(ombrageOuiNon > 0);
 
         animationAleatoire(ui);
-    });
+    
 });
 
 function animationAleatoire(ui) {

@@ -7,19 +7,23 @@ class CanvasManager {
         }
     }
 
+    dimensionner() {
+        this.largeur = this.conteneur.clientWidth;
+        this.hauteur = this.conteneur.clientHeight;
+    }
+
     genererGrille(nombreEnX, nombreEnY) {
         this.nombreEnX = nombreEnX;
         this.nombreEnY = nombreEnY;
 
-        this.largeur = this.conteneur.clientWidth;
-        this.hauteur = this.conteneur.clientHeight;
+        this.dimensionner();
 
         var largeurCanvas = this.largeur / this.nombreEnX;
         var hauteurCanvas = this.hauteur / this.nombreEnY;
 
         this.grille = [];
         for (var i = 0; i < nombreEnX; i++) {
-            this.grille[i] = [];
+            //this.grille[i] = [];
             for (var j = 0; j < nombreEnY; j++) {
 
                 var leCanvas = document.createElement('canvas');
@@ -32,14 +36,14 @@ class CanvasManager {
                 leCanvas.style.left = (i * leCanvas.width) + 'px';
                 leCanvas.style.top = (j * leCanvas.height) + 'px';
 
-
-
-
-                this.grille[i][j] = leCanvas.id;
+                this.grille.push(leCanvas.id);
 
                 this.conteneur.append(leCanvas);
             }
         }
+
         return this.grille;
     }
+
+    
 }
