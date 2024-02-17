@@ -4,8 +4,8 @@
 */
 
 canvasManager = new CanvasManager("#modui");
-//var grille = canvasManager.genererGrille(5, 4);
-var grille = canvasManager.placerAleatoirement(5);
+var grille = canvasManager.genererGrille(10, 8);
+//var grille = canvasManager.placerAleatoirement(5);
 
 console.log(grille);
 
@@ -67,8 +67,8 @@ grille.forEach(y => {
         var params = uiType.params.join(',');
         var ui = eval('new ' + uiType.type + '(' + params + ');');
 
-        //var ombrageOuiNon = Math.floor(Math.random() * 2);
-        //ui.activerOmbre(ombrageOuiNon > 0);
+        var ombrageOuiNon = Math.floor(Math.random() * 2);
+        ui.activerOmbre(ombrageOuiNon > 0);
 
         animationAleatoire(ui);
     
