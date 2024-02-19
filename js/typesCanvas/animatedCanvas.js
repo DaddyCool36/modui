@@ -16,10 +16,15 @@ class AnimatedCanvas {
         this.ctx = canvas.getContext('2d');
         this.width = canvas.width;
         this.height = canvas.height;
-        this.animationId = null;
+        this.handleId = null;
         this.numeroAnimation = 0;
         this.stopAnimation = false;
         this.couleur = 'white';
+
+        // Liste d'animations du Canvas
+        this.animations = [];
+        // L'animation sélectionnée
+        this.animationEnCours = "";
     }
 
     /**
@@ -71,7 +76,7 @@ class AnimatedCanvas {
             this.effacer();
             this.avancer();
             this.dessiner();
-            this.animationId = requestAnimationFrame(animate);
+            this.handleId = requestAnimationFrame(animate);
         };
         animate();
     }
@@ -80,6 +85,6 @@ class AnimatedCanvas {
      * Stoppe l'animation.
      */
     stopAnimating() {
-        cancelAnimationFrame(this.animationId);
+        cancelAnimationFrame(this.handleId);
     }
 }
