@@ -29,9 +29,9 @@ class CanvasAnimator {
   
       this.animationFrameId = requestAnimationFrame(() => this.animationLoop());
     }
-  }
+}
   
-  class Animation {
+class Animation {
     constructor(init, draw, stop) {
       this.init = init;
       this.draw = draw;
@@ -48,15 +48,15 @@ class CanvasAnimator {
       this.shouldAnimate = false;
       this.stop();
     }
-  }
+}
   
-  // Exemple d'utilisation
-  
-  const canvas = document.getElementById('canvas');
-  const animator = new CanvasAnimator(canvas);
-  
-  // Animation 1 : Dessiner un cercle qui grandit
-  const animation1 = new Animation(
+// Exemple d'utilisation
+
+const canvas = document.getElementById('canvas');
+const animator = new CanvasAnimator(canvas);
+
+// Animation 1 : Dessiner un cercle qui grandit
+const animation1 = new Animation(
     () => {
       this.radius = 0;
     },
@@ -68,10 +68,10 @@ class CanvasAnimator {
       this.radius += 1;
     },
     () => {}
-  );
+);
   
-  // Animation 2 : Déplacer un rectangle
-  const animation2 = new Animation(
+// Animation 2 : Déplacer un rectangle
+const animation2 = new Animation(
     () => {
       this.x = 0;
     },
@@ -81,18 +81,21 @@ class CanvasAnimator {
       this.x += 1;
     },
     () => {}
-  );
+);
   
-  // Déclencher les animations
-  
-  const div1 = document.getElementById('div1');
-  div1.addEventListener('click', () => {
+// Déclencher les animations
+
+const div1 = document.getElementById('div1');
+div1.addEventListener('click', () => {
     animation1.start();
-  });
-  
-  const div2 = document.getElementById('div2');
-  div2.addEventListener('mouseover', () => {
+});
+
+const div2 = document.getElementById('div2');
+div2.addEventListener('mouseover', () => {
     animation2.start();
-  });
-  
-  animator.start();
+});
+
+animator.addAnimation(animation1);
+animator.addAnimation(animation2);
+
+animator.start();
