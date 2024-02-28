@@ -87,4 +87,9 @@ class AnimatedCanvas {
     stopAnimating() {
         cancelAnimationFrame(this.handleId);
     }
+
+    refresh() {
+        this.effacer();
+        this.dessiner();
+    }
 }
