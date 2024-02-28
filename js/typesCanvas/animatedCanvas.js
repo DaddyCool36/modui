@@ -23,8 +23,7 @@ class AnimatedCanvas {
 
         // Liste d'animations du Canvas
         this.animations = [];
-        // L'animation sélectionnée
-        this.animationEnCours = "";
+
     }
 
     /**
