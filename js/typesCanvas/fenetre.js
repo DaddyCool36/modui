@@ -1,5 +1,13 @@
 class Fenetre extends AnimatedCanvas {
 
+    animations = [
+        {
+            id: 0,
+            animate: false,
+            init
+        }
+    ];
+
     constructor(canvas, vitesse = 1, couleur = 'white',
         largeurFinale = null, hauteurFinale = null, epaisseur = 1) {
         super(canvas);
