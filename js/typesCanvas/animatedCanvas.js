@@ -72,9 +72,8 @@ class AnimatedCanvas {
                 return;
             }
 
-            this.effacer();
             this.avancer();
-            this.dessiner();
+            this.refresh();
             this.handleId = requestAnimationFrame(animate);
         };
         animate();

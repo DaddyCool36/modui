@@ -1,12 +1,21 @@
 class Fenetre extends AnimatedCanvas {
 
-    animations = [
-        {
-            id: 0,
+    animations = {
+        0 : {
             animate: false,
-            init
+            init() { 
+                console.log('init');
+            },
+
+            avancer() {
+                console.log('avancer');
+            },
+
+            dessiner() {
+                console.log('dessiner');
+            }
         }
-    ];
+    };
 
     constructor(canvas, vitesse = 1, couleur = 'white',
         largeurFinale = null, hauteurFinale = null, epaisseur = 1) {
@@ -129,17 +138,12 @@ class Fenetre extends AnimatedCanvas {
     dessiner() {
 
         this.ctx.beginPath();
-        /*
-                this.ctx.shadowBlur = 20;
-                this.ctx.shadowOffsetX = 0;
-                this.ctx.shadowOffsetY = 0;
-                this.ctx.shadowColor = this.couleur;
-        */
+
         this.ctx.moveTo(this.chemin[0][0], this.chemin[0][1]);
         this.chemin.forEach(point => {
             this.ctx.lineTo(point[0], point[1]);
         });
-        // ctx.lineTo(path[0][0], path[0][1]);
+        
         this.ctx.closePath();
 
         this.ctx.moveTo(this.cheminInterne[0][0], this.cheminInterne[0][1]);
