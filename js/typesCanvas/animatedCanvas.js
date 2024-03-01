@@ -64,17 +64,17 @@ class AnimatedCanvas {
      * A chaque cycle : appelle effacer(), avancer() et dessiner()
      *      tant que this.stopAnimation est false.
      */
-    startAnimating() {
+    startAnimating(num) {
         const animate = () => {
 
-            if (this.stopAnimation) {
-                this.stopAnimating();
+            if (!this.animations[num].running) {
+                this.stopAnimating(num);
                 return;
             }
 
-            this.avancer();
-            this.refresh();
-            this.handleId = requestAnimationFrame(animate);
+            this.animations[num].avancer();
+            this.animations[num].refresh();
+            this.animations[num].handleId = requestAnimationFrame(animate);
         };
         animate();
     }
@@ -82,8 +82,8 @@ class AnimatedCanvas {
     /**
      * Stoppe l'animation.
      */
-    stopAnimating() {
-        cancelAnimationFrame(this.handleId);
+    stopAnimating(num) {
+        cancelAnimationFrame(this.animations[num].handleId);
     }
 
     refresh() {

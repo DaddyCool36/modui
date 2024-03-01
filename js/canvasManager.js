@@ -25,7 +25,6 @@ class CanvasManager {
         leCanvas.style.display = 'block';
         leCanvas.style.position = 'absolute';
         
-
         leCanvas.style.left = left;
         leCanvas.style.top = top;
 
@@ -44,12 +43,12 @@ class CanvasManager {
 
             for (var j = 0; j < nombreEnY; j++) {
 
-                nouveauCanvas = this.genererUnCanvas(
+                var nouveauCanvas = this.genererUnCanvas(
                     'canX' + i + 'Y' + j,
                     largeurCanvas,
                     hauteurCanvas,
-                    (j * leCanvas.height) + 'px',
-                    (i * leCanvas.width) + 'px'
+                    (j * hauteurCanvas) + 'px',
+                    (i * largeurCanvas) + 'px'
                 )
 
                 this.grille.push(nouveauCanvas.id);
@@ -69,10 +68,11 @@ class CanvasManager {
 
             largeurCanvas = Math.round(50 + (Math.random() * (this.largeur - 50)));
             hauteurCanvas = Math.round(50 + (Math.random() * (this.hauteur - 50)));
+
             var xAleatoire = Math.round(Math.random() * (this.largeur - largeurCanvas));
             var yAleatoire = Math.round(Math.random() * (this.hauteur - hauteurCanvas));
 
-            nouveauCanvas = this.genererUnCanvas(
+            var nouveauCanvas = this.genererUnCanvas(
                 'canN' + i, 
                 largeurCanvas,
                 hauteurCanvas, 

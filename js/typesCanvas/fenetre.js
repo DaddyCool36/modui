@@ -2,7 +2,7 @@ class Fenetre extends AnimatedCanvas {
 
     animations = {
         0 : {
-            animate: false,
+            running: false,
             init() { 
                 console.log('init');
             },
