@@ -15,6 +15,23 @@ class CanvasManager {
         this.hauteur = this.conteneur.clientHeight;
     }
 
+    genererUnCanvas(id, largeur, hauteur, top, left) {
+        
+        var leCanvas = document.createElement('canvas');
+        leCanvas.id = id;
+
+        leCanvas.width = largeur;
+        leCanvas.height = hauteur;
+        leCanvas.style.display = 'block';
+        leCanvas.style.position = 'absolute';
+        
+
+        leCanvas.style.left = left;
+        leCanvas.style.top = top;
+
+        return leCanvas;
+    }
+
     genererGrille(nombreEnX, nombreEnY) {
         this.nombreEnX = nombreEnX;
         this.nombreEnY = nombreEnY;
@@ -24,22 +41,20 @@ class CanvasManager {
 
         this.grille = [];
         for (var i = 0; i < nombreEnX; i++) {
-            //this.grille[i] = [];
+
             for (var j = 0; j < nombreEnY; j++) {
 
-                var leCanvas = document.createElement('canvas');
-                leCanvas.width = largeurCanvas;
-                leCanvas.height = hauteurCanvas;
-                leCanvas.style.display = 'block';
-                leCanvas.style.position = 'absolute';
-                leCanvas.id = 'canX' + i + 'Y' + j;
+                nouveauCanvas = this.genererUnCanvas(
+                    'canX' + i + 'Y' + j,
+                    largeurCanvas,
+                    hauteurCanvas,
+                    (j * leCanvas.height) + 'px',
+                    (i * leCanvas.width) + 'px'
+                )
 
-                leCanvas.style.left = (i * leCanvas.width) + 'px';
-                leCanvas.style.top = (j * leCanvas.height) + 'px';
+                this.grille.push(nouveauCanvas.id);
 
-                this.grille.push(leCanvas.id);
-
-                this.conteneur.append(leCanvas);
+                this.conteneur.append(nouveauCanvas);
             }
         }
 
@@ -51,23 +66,25 @@ class CanvasManager {
 
         this.grille = [];
         for (var i = 0; i < this.nombre; i++) {
-            var leCanvas = document.createElement('canvas');
 
-            leCanvas.width = Math.round(50 + (Math.random() * (this.largeur - 50)));
-            leCanvas.height = Math.round(50 + (Math.random() * (this.hauteur - 50)));
-            leCanvas.style.display = 'block';
-            leCanvas.style.position = 'absolute';
-            leCanvas.style.background = 'transparent';
-            leCanvas.id = 'canN' + i;
+            largeurCanvas = Math.round(50 + (Math.random() * (this.largeur - 50)));
+            hauteurCanvas = Math.round(50 + (Math.random() * (this.hauteur - 50)));
+            var xAleatoire = Math.round(Math.random() * (this.largeur - largeurCanvas));
+            var yAleatoire = Math.round(Math.random() * (this.hauteur - hauteurCanvas));
 
-            var xAleatoire = Math.round(Math.random() * (this.largeur - leCanvas.width));
-            var yAleatoire = Math.round(Math.random() * (this.hauteur - leCanvas.height));
-            leCanvas.style.left = xAleatoire + 'px';
-            leCanvas.style.top = yAleatoire + 'px';
+            nouveauCanvas = this.genererUnCanvas(
+                'canN' + i, 
+                largeurCanvas,
+                hauteurCanvas, 
+                yAleatoire + 'px', 
+                xAleatoire + 'px'
+            );
 
-            this.grille.push(leCanvas.id);
+            nouveauCanvas.style.background = 'transparent';
 
-                this.conteneur.append(leCanvas);
+            this.grille.push(nouveauCanvas.id);
+
+            this.conteneur.append(nouveauCanvas);
         }
 
         return this.grille;
