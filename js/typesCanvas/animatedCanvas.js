@@ -23,8 +23,7 @@ class AnimatedCanvas {
 
         // Liste d'animations du Canvas
         this.animations = [];
-        // L'animation sélectionnée
-        this.animationEnCours = "";
+
     }
 
     /**
@@ -65,18 +64,17 @@ class AnimatedCanvas {
      * A chaque cycle : appelle effacer(), avancer() et dessiner()
      *      tant que this.stopAnimation est false.
      */
-    startAnimating() {
+    startAnimating(num) {
         const animate = () => {
 
-            if (this.stopAnimation) {
-                this.stopAnimating();
+            if (!this.animations[num].running) {
+                this.stopAnimating(num);
                 return;
             }
 
-            this.effacer();
-            this.avancer();
-            this.dessiner();
-            this.handleId = requestAnimationFrame(animate);
+            this.animations[num].avancer();
+            this.animations[num].refresh();
+            this.animations[num].handleId = requestAnimationFrame(animate);
         };
         animate();
     }
@@ -84,7 +82,12 @@ class AnimatedCanvas {
     /**
      * Stoppe l'animation.
      */
-    stopAnimating() {
-        cancelAnimationFrame(this.handleId);
+    stopAnimating(num) {
+        cancelAnimationFrame(this.animations[num].handleId);
+    }
+
+    refresh() {
+        this.effacer();
+        this.dessiner();
     }
 }

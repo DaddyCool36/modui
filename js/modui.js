@@ -4,10 +4,8 @@
 */
 
 canvasManager = new CanvasManager("#modui");
-var grille = canvasManager.genererGrille(15, 12);
+var grille = canvasManager.genererGrille(10, 8);
 //var grille = canvasManager.placerAleatoirement(5);
-
-console.log(grille);
 
 var valH = Math.floor(Math.random() * 360);
 
@@ -42,7 +40,7 @@ grille.forEach(y => {
                 'epaisseur'
             ]
         },
-
+/*
         {
             'type': 'Grille',
             'params': [
@@ -59,6 +57,7 @@ grille.forEach(y => {
                 'color'
             ]
         }
+        */
     ];
 
     var numUIAleatoire = Math.floor(Math.random() * typesUI.length);
@@ -68,16 +67,35 @@ grille.forEach(y => {
     var ui = eval('new ' + uiType.type + '(' + params + ');');
 
     var ombrageOuiNon = Math.floor(Math.random() * 2);
-    ui.activerOmbre(ombrageOuiNon > 0);
+    // ui.activerOmbre(ombrageOuiNon > 0);
 
     animationAleatoire(ui);
+
+
     
 });
 
 function animationAleatoire(ui) {
     var tps = Math.random() * 2000;
     setTimeout(() => {
-        ui.startAnimating();
+        ui.startAnimating(0);
     }, tps);
 }
 
+/*
+var leCanvas = document.createElement('canvas');
+                leCanvas.width = 100;
+                leCanvas.height = 100;
+                leCanvas.style.display = 'block';
+                leCanvas.style.position = 'absolute';
+                leCanvas.id = '12';
+
+                
+                document.querySelector("#modui").append(leCanvas);
+                
+
+fenetre1 = new Fenetre(leCanvas);
+fenetre1.animations[0].init();
+fenetre1.animations[0].avancer();
+fenetre1.animations[0].dessiner();
+*/

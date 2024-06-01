@@ -20,15 +20,19 @@ class CanvasAnimator {
   
     animationLoop() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  
+
       this.animations.forEach((animation) => {
         if (animation.shouldAnimate) {
-          animation.draw(this.ctx);
+          const progress = (Date.now() - animation.startTime) / animation.duration;
+          if (progress >= 1) {
+            animation.stop();
+          } else {
+            animation.draw(this.ctx, progress);
+          }
         }
       });
-  
-      this.animationFrameId = requestAnimationFrame(() => this.animationLoop());
-    }
+    
+      this.animationFrameId = requestAnimationFrame(() => this.animationLoop());    }
 }
   
 class Animation {
@@ -36,12 +40,19 @@ class Animation {
       this.init = init;
       this.draw = draw;
       this.stop = stop;
+      // durée de l'animation, en ms
+      this.duration = 1000;
+      // vitesse de l'animation
+      this.speed = 1 ;
+      // départ de l'animation
+      this.startTime = 0;
       this.shouldAnimate = false;
     }
   
     start() {
       this.shouldAnimate = true;
       this.init();
+      this.startTime = Date.now();
     }
   
     stop() {
