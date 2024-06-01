@@ -4,13 +4,32 @@
 */
 
 canvasManager = new CanvasManager("#modui");
-var grille = canvasManager.genererGrille(10, 8);
-//var grille = canvasManager.placerAleatoirement(5);
+var grille = canvasManager.genererGrille(10, 1);
 
 var valH = Math.floor(Math.random() * 360);
 
 Faker.fakeBouton();
 
+// Grille de fenetres
+grille.forEach(y => {
+
+    var ui = new Fenetre(
+        document.querySelector('#' + y), // id du canvas
+        y + 1, // vitesse de 1 à y
+        'hsl(' + valH + 'deg, 100%, 70%)', // couleur
+        'null',
+        'null',
+        y + 1);
+
+console.log(ui)
+
+    ui.startAnimating(0);
+})
+
+
+
+
+/*
 grille.forEach(y => {
     var can = document.querySelector('#' + y);
     var valS = Math.floor(40 + Math.random() * 60);
@@ -57,7 +76,7 @@ grille.forEach(y => {
                 'color'
             ]
         }
-        */
+        
     ];
 
     var numUIAleatoire = Math.floor(Math.random() * typesUI.length);
@@ -82,20 +101,4 @@ function animationAleatoire(ui) {
     }, tps);
 }
 
-/*
-var leCanvas = document.createElement('canvas');
-                leCanvas.width = 100;
-                leCanvas.height = 100;
-                leCanvas.style.display = 'block';
-                leCanvas.style.position = 'absolute';
-                leCanvas.id = '12';
-
-                
-                document.querySelector("#modui").append(leCanvas);
-                
-
-fenetre1 = new Fenetre(leCanvas);
-fenetre1.animations[0].init();
-fenetre1.animations[0].avancer();
-fenetre1.animations[0].dessiner();
 */
