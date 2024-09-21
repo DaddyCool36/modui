@@ -40,82 +40,91 @@ class Fenetre extends AnimatedCanvas {
 
         this.loop = 0.0;
 
+        this.animations[0] = {
+            avancer: function() {
+
+                if (this.loop < 1) {
+                    this.loop += this.vitesse / 100;
+                }
+        
+                const bezier = this.bezier(this.loop);
+        
+                this.largeur = this.largeurInit + (this.diffX * bezier);
+                this.hauteur = this.hauteurInit + (this.diffY * bezier);
+        
+                this.largeur = (this.largeur > this.largeurFinale ? this.largeurFinale : this.largeur);
+                this.hauteur = (this.hauteur > this.hauteurFinale ? this.hauteurFinale : this.hauteur);
+        
+                // if (this.largeur > this.largeurFinale) {
+                //     this.largeur = this.largeurFinale;
+                // }
+        
+                // if (this.hauteur > this.hauteurFinale) {
+                //     this.hauteur = this.hauteurFinale;
+                // }
+        
+                if (this.largeur >= this.largeurFinale && this.hauteur >= this.hauteurFinale) {
+                    this.stopAnimation = true;
+                    return;
+                }
+        
+                const milieuH = this.hauteur / 2;
+        
+                this.chemin = [
+                    // haut
+                    [this.epaisseur, 0],
+                    [7 * this.epaisseur, 0],
+                    [8 * this.epaisseur, this.epaisseur],
+                    // biseau haut droite
+                    [this.largeur - 30, this.epaisseur],
+                    [this.largeur, 30 + this.epaisseur],
+                    // décroché milieu droite
+                    [this.largeur, milieuH + this.epaisseur],
+                    [this.largeur - (2 * this.epaisseur), milieuH + this.epaisseur],
+                    // bas droite
+                    [this.largeur - (2 * this.epaisseur), this.hauteur - this.epaisseur],
+                    [this.largeur - (3 * this.epaisseur), this.hauteur],
+                    // bas gauche
+                    [this.epaisseur, this.hauteur],
+                    [0, this.hauteur - this.epaisseur],
+                    [0, this.epaisseur],
+                ];
+        
+                this.cheminInterne = [
+                    // haut gauche
+                    [this.epaisseur, 3 * this.epaisseur],
+                    [5 * this.epaisseur, 3 * this.epaisseur],
+                    [6 * this.epaisseur, 2 * this.epaisseur],
+                    // biseau haut droite
+                    [this.largeur - (30 + (2 * this.epaisseur)), 2 * this.epaisseur],
+                    [this.largeur - this.epaisseur, 30 + (3 * this.epaisseur)],
+                    // décroché milieu droite
+                    [this.largeur - this.epaisseur, milieuH],
+                    [this.largeur - (3 * this.epaisseur), milieuH],
+                    // bas droite
+                    [this.largeur - (3 * this.epaisseur), this.hauteur - (2 * this.epaisseur)],
+                    [this.largeur - (5 * this.epaisseur), this.hauteur - (2 * this.epaisseur)],
+                    [this.largeur - (6 * this.epaisseur), this.hauteur - this.epaisseur],
+                    // bas gauche
+                    [2 * this.epaisseur, this.hauteur - this.epaisseur],
+                    [this.epaisseur, this.hauteur - (2 * this.epaisseur)],
+                    [this.epaisseur, this.hauteur - (2 * this.epaisseur)],
+                ];
+        
+        
+        
+                this.agrandX += this.vitesse;
+                this.agrandY += this.vitesse;
+            },
+        };
+
+
+
     }
 
     avancer() {
 
-        if (this.loop < 1) {
-            this.loop += this.vitesse / 100;
-        }
-
-        const bezier = this.bezier(this.loop);
-
-        this.largeur = this.largeurInit + (this.diffX * bezier);
-        this.hauteur = this.hauteurInit + (this.diffY * bezier);
-
-        this.largeur = (this.largeur > this.largeurFinale ? this.largeurFinale : this.largeur);
-        this.hauteur = (this.hauteur > this.hauteurFinale ? this.hauteurFinale : this.hauteur);
-
-        // if (this.largeur > this.largeurFinale) {
-        //     this.largeur = this.largeurFinale;
-        // }
-
-        // if (this.hauteur > this.hauteurFinale) {
-        //     this.hauteur = this.hauteurFinale;
-        // }
-
-        if (this.largeur >= this.largeurFinale && this.hauteur >= this.hauteurFinale) {
-            this.stopAnimation = true;
-            return;
-        }
-
-        const milieuH = this.hauteur / 2;
-
-        this.chemin = [
-            // haut
-            [this.epaisseur, 0],
-            [7 * this.epaisseur, 0],
-            [8 * this.epaisseur, this.epaisseur],
-            // biseau haut droite
-            [this.largeur - 30, this.epaisseur],
-            [this.largeur, 30 + this.epaisseur],
-            // décroché milieu droite
-            [this.largeur, milieuH + this.epaisseur],
-            [this.largeur - (2 * this.epaisseur), milieuH + this.epaisseur],
-            // bas droite
-            [this.largeur - (2 * this.epaisseur), this.hauteur - this.epaisseur],
-            [this.largeur - (3 * this.epaisseur), this.hauteur],
-            // bas gauche
-            [this.epaisseur, this.hauteur],
-            [0, this.hauteur - this.epaisseur],
-            [0, this.epaisseur],
-        ];
-
-        this.cheminInterne = [
-            // haut gauche
-            [this.epaisseur, 3 * this.epaisseur],
-            [5 * this.epaisseur, 3 * this.epaisseur],
-            [6 * this.epaisseur, 2 * this.epaisseur],
-            // biseau haut droite
-            [this.largeur - (30 + (2 * this.epaisseur)), 2 * this.epaisseur],
-            [this.largeur - this.epaisseur, 30 + (3 * this.epaisseur)],
-            // décroché milieu droite
-            [this.largeur - this.epaisseur, milieuH],
-            [this.largeur - (3 * this.epaisseur), milieuH],
-            // bas droite
-            [this.largeur - (3 * this.epaisseur), this.hauteur - (2 * this.epaisseur)],
-            [this.largeur - (5 * this.epaisseur), this.hauteur - (2 * this.epaisseur)],
-            [this.largeur - (6 * this.epaisseur), this.hauteur - this.epaisseur],
-            // bas gauche
-            [2 * this.epaisseur, this.hauteur - this.epaisseur],
-            [this.epaisseur, this.hauteur - (2 * this.epaisseur)],
-            [this.epaisseur, this.hauteur - (2 * this.epaisseur)],
-        ];
-
-
-
-        this.agrandX += this.vitesse;
-        this.agrandY += this.vitesse;
+        
     }
 
     dessiner() {
