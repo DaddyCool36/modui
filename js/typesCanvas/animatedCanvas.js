@@ -23,8 +23,18 @@ class AnimatedCanvas {
 
         // Liste d'animations du Canvas
         this.animations = [];
+        this.animations[0] = {
+            avancer: function() {
+                console.log("AnimatedCanvas - avancer");
+            },
+
+            dessiner: function () {
+                console.log("AnimatedCanvas - dessiner");
+            }
+        };
+
         // L'animation sélectionnée
-        this.animationEnCours = "";
+        this.animationEnCours = "0";
     }
 
     /**
@@ -74,8 +84,10 @@ class AnimatedCanvas {
             }
 
             this.effacer();
-            this.avancer();
-            this.dessiner();
+
+            this.animations[0].avancer();
+            this.animations[0].dessiner();
+
             this.handleId = requestAnimationFrame(animate);
         };
         animate();

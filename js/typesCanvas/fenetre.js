@@ -116,45 +116,39 @@ class Fenetre extends AnimatedCanvas {
                 this.agrandX += this.vitesse;
                 this.agrandY += this.vitesse;
             },
+
+            dessiner: function() {
+                this.ctx.beginPath();
+                /*
+                        this.ctx.shadowBlur = 20;
+                        this.ctx.shadowOffsetX = 0;
+                        this.ctx.shadowOffsetY = 0;
+                        this.ctx.shadowColor = this.couleur;
+                */
+                this.ctx.moveTo(this.chemin[0][0], this.chemin[0][1]);
+                this.chemin.forEach(point => {
+                    this.ctx.lineTo(point[0], point[1]);
+                });
+                // ctx.lineTo(path[0][0], path[0][1]);
+                this.ctx.closePath();
+
+                this.ctx.moveTo(this.cheminInterne[0][0], this.cheminInterne[0][1]);
+                this.cheminInterne.forEach(point => {
+                    this.ctx.lineTo(point[0], point[1]);
+                });
+
+                this.ctx.closePath();
+
+
+
+                this.ctx.fillStyle = this.couleur;
+                this.ctx.fill('evenodd');
+
+            }
         };
 
 
 
     }
 
-    avancer() {
-
-        
-    }
-
-    dessiner() {
-
-        this.ctx.beginPath();
-        /*
-                this.ctx.shadowBlur = 20;
-                this.ctx.shadowOffsetX = 0;
-                this.ctx.shadowOffsetY = 0;
-                this.ctx.shadowColor = this.couleur;
-        */
-        this.ctx.moveTo(this.chemin[0][0], this.chemin[0][1]);
-        this.chemin.forEach(point => {
-            this.ctx.lineTo(point[0], point[1]);
-        });
-        // ctx.lineTo(path[0][0], path[0][1]);
-        this.ctx.closePath();
-
-        this.ctx.moveTo(this.cheminInterne[0][0], this.cheminInterne[0][1]);
-        this.cheminInterne.forEach(point => {
-            this.ctx.lineTo(point[0], point[1]);
-        });
-
-        this.ctx.closePath();
-
-
-
-        this.ctx.fillStyle = this.couleur;
-        this.ctx.fill('evenodd');
-
-
-    }
 }
