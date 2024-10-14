@@ -40,9 +40,12 @@ class Fenetre extends AnimatedCanvas {
 
         this.loop = 0.0;
 
-        this.animations[0] = {
-            avancer: function() {
+    }
+    
+    avancer() {
 
+        switch (this.numeroAnimation) {
+            case 0:
                 if (this.loop < 1) {
                     this.loop += this.vitesse / 100;
                 }
@@ -111,13 +114,22 @@ class Fenetre extends AnimatedCanvas {
                     [this.epaisseur, this.hauteur - (2 * this.epaisseur)],
                 ];
         
-        
-        
                 this.agrandX += this.vitesse;
                 this.agrandY += this.vitesse;
-            },
 
-            dessiner: function() {
+                break;
+        
+            default:
+                break;
+        }
+
+        
+    }
+
+    dessiner() {
+
+        switch (this.numeroAnimation) {
+            case 0:
                 this.ctx.beginPath();
                 /*
                         this.ctx.shadowBlur = 20;
@@ -143,12 +155,13 @@ class Fenetre extends AnimatedCanvas {
 
                 this.ctx.fillStyle = this.couleur;
                 this.ctx.fill('evenodd');
-
-            }
-        };
-
-
+            
+                break;
+        
+            default:
+                break;
+        }
 
     }
-
+        
 }

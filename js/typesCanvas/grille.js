@@ -1,6 +1,6 @@
 class Grille extends AnimatedCanvas {
 
-    constructor(canvas, couleur = 'white', espacement = '10') {
+    constructor(canvas, couleur = 'white', espacement = 10) {
         super(canvas);
 
         this.couleur = couleur;
@@ -12,9 +12,12 @@ class Grille extends AnimatedCanvas {
         this.on = true;
 
         this.stopApres = false;
+    }
 
-        this.animations[0] = {
-            avancer: function() {
+    avancer() {
+
+        switch (this.numeroAnimation) {
+            case 0:
                 if (this.depart == null) {
                     this.depart = Date.now();
                 }
@@ -23,7 +26,7 @@ class Grille extends AnimatedCanvas {
         
                 var diff = this.now - this.depart;
         
-                var step1 = 50;
+                var step1 = 30;
                 var step2 = step1 + 30;
         
                 if (diff >= 0 && diff < step1) {
@@ -38,19 +41,23 @@ class Grille extends AnimatedCanvas {
                     this.on = true;
                     this.stopApres = true;
                 }
-            },
+                break;
+        
+            default:
+                break;
+        };
+        
+    }
 
-            dessiner: function () {
+    dessiner() {
+
+        switch (this.animationEnCours) {
+            case 0:
                 if (!this.on) {
                     return;
                 }
         
-        
-        
                 this.ctx.beginPath();
-        
-        
-        
         
                 this.ctx.strokeStyle = this.couleur;
         
@@ -72,8 +79,12 @@ class Grille extends AnimatedCanvas {
                 if (this.stopApres) {
                     this.stopAnimation = true;
                 }
-            }
+                break;
+        
+            default:
+                break;
         };
+        
     }
-
+    
 }

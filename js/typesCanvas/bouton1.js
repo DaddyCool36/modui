@@ -9,18 +9,31 @@ class Bouton1 extends AnimatedCanvas {
 
         this.numero = numero;
 
-        this.animations[0] = {
-            avancer: function() {
+    }
+    avancer() {
 
+        switch (this.numeroAnimation) {
+            case 0:
                 if (this.numero == null) {
                     this.numero = Faker.fakeNombre(2);
                 }
         
                 this.texte = Faker.fakeMot(3, 2);
-        
-            },
 
-            dessiner: function () {
+                break;
+        
+            default:
+                break;
+        }
+
+        
+
+    }
+
+    dessiner() {
+
+        switch (this.numeroAnimation) {
+            case 0:
                 this.ctx.beginPath();
 
                 this.ctx.strokeStyle = this.couleur;
@@ -59,9 +72,12 @@ class Bouton1 extends AnimatedCanvas {
 
 
                 this.stopAnimation = true;
-            }
-        };
-
+                break;
+        
+            default:
+                break;
+        }
+        
     }
 
 }

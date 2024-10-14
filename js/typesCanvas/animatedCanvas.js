@@ -34,7 +34,7 @@ class AnimatedCanvas {
         };
 
         // L'animation sélectionnée
-        this.animationEnCours = "0";
+        this.animationEnCours = 0;
     }
 
     /**
@@ -85,8 +85,8 @@ class AnimatedCanvas {
 
             this.effacer();
 
-            this.animations[0].avancer();
-            this.animations[0].dessiner();
+            this.avancer();
+            this.dessiner();
 
             this.handleId = requestAnimationFrame(animate);
         };
