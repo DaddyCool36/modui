@@ -7,7 +7,6 @@ canvasManager = new CanvasManager("#modui");
 var grille = canvasManager.genererGrille(15, 12);
 //var grille = canvasManager.placerAleatoirement(5);
 
-console.log(grille);
 
 var valH = Math.floor(Math.random() * 360);
 
