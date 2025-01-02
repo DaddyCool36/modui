@@ -1,8 +1,8 @@
 canvasManager = new CanvasManager("#modui");
 
-var leCanvas = document.createElement('canvas');
-leCanvas.width = '500';
-leCanvas.height = '300';
+let leCanvas = document.createElement('canvas');
+leCanvas.width = 500;
+leCanvas.height = 500;
 leCanvas.style.display = 'block';
 leCanvas.style.position = 'absolute';
 leCanvas.id = 'canBouton1';
