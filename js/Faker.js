@@ -24,7 +24,7 @@ class Faker {
     }
 
     static tabJauges(i = null) {
-        var tab = [
+        let tab = [
             'Antenna',
             'Band',
             'Engine',
@@ -59,6 +59,48 @@ class Faker {
             'Rear',
             'Right',
             'Up',
+        ];
+
+        if (i == null) {
+            return tab;
+        }
+
+        return tab[i];
+    }
+
+    static tabOrderString(i = null) {
+        let tab = [
+            'First',
+            'Second',
+            'Third',
+            'Fourth',
+            'Fifth',
+            'Sixth',
+            'Seventh',
+            'Eighth',
+            'Ninth',
+            'Tenth',
+        ];
+
+        if (i == null) {
+            return tab;
+        }
+
+        return tab[i];
+    }
+
+    static tabOrderNth(i = null) {
+        let tab = [
+            '1st',
+            '2nd',
+            '3rd',
+            '4th',
+            '5th',
+            '6th',
+            '7th',
+            '8th',
+            '9th',
+            '10th',
         ];
 
         if (i == null) {
